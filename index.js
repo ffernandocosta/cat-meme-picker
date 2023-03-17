@@ -6,10 +6,20 @@ const gifsOnlyOption = document.getElementById('gifs-only-option')
 const memeModalInner = document.getElementById('meme-modal-inner')
 const memeModal = document.getElementById('meme-modal')
 const memeModalCloseBtn = document.getElementById('meme-modal-close-btn')
+const memeModalAddToFavoriteBtn = document.getElementById('meme-modal-add-to-favorite-button')
+const memeModalFavorites = document.getElementById('meme-modal-favorites')
+const memeModalClearFavoritesBtn = document.getElementById('clear-all-favorites-btn')
+
+let currentCatObject = null;
+let favoriteCatsArray = JSON.parse(localStorage.getItem("favoriteCats")) || []
 
 emotionRadios.addEventListener('change', highlightCheckedOption)
 
 memeModalCloseBtn.addEventListener('click', closeModal)
+
+memeModalAddToFavoriteBtn.addEventListener('click', addToFavorites)
+
+memeModalClearFavoritesBtn.addEventListener('click', clearFavoriteList)
 
 getImageBtn.addEventListener('click', renderCat)
 
@@ -23,20 +33,54 @@ function highlightCheckedOption(e){
 
 function closeModal(){
     memeModal.style.display = 'none'
+    memeModalAddToFavoriteBtn.nextElementSibling.style.display = 'none'
+}
+
+function addToFavorites(){
+    if (currentCatObject && !favoriteCatsArray.includes(currentCatObject)) {
+        favoriteCatsArray.push(currentCatObject)
+        localStorage.setItem("favoriteCats", JSON.stringify(favoriteCatsArray))
+        
+        // creates an image tag for the current cat meme
+        const image = document.createElement('img')
+        image.src = `./images/${currentCatObject.image}`
+        image.alt = currentCatObject.alt
+        image.classList.add('cat-img')
+
+        // adds the image tag to the memeModalFavorites div
+        memeModalFavorites.appendChild(image)
+        
+    } else {
+        memeModalAddToFavoriteBtn.nextElementSibling.style.display = 'flex'
+    }
+}
+
+
+function clearFavoriteList() {
+    
+    // removes 'favoriteCats' key from localStorage
+    localStorage.removeItem("favoriteCats");
+    
+    // clears the favoriteCatsArray
+    favoriteCatsArray = [];
+    
+    // clears the current cat memes being rendered in the memeModalFavorites div
+    memeModalFavorites.innerHTML = "";
 }
 
 
 function renderCat(){
-    const catObject = getSingleCatObject()
+    currentCatObject = getSingleCatObject()
     memeModalInner.innerHTML =  `
         <img 
         class="cat-img" 
-        src="./images/${catObject.image}"
-        alt="${catObject.alt}"
+        src="./images/${currentCatObject.image}"
+        alt="${currentCatObject.alt}"
         >
         `
     memeModal.style.display = 'flex'
 }
+
 
 function getSingleCatObject(){
     const catsArray = getMatchingCatsArray()
