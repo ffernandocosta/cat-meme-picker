@@ -1,6 +1,7 @@
 html, body {
     margin: 0;
     font-family: 'Karla', sans-serif;
+    background-color: #fafafe;
 }
 
 /*typography*/
@@ -9,8 +10,8 @@ h1, h2, h3{
     text-align: center;
 }
 
-h1, h2{
-    color: #EED6D3;
+h1 {
+    color: #8d9be2;
     margin: 0;
 }
 
@@ -20,16 +21,19 @@ h1{
 
 h2 {
     font-size: 16px;
+    color: #5f5a93;
+    margin: 0;
 }
 
 h3{
     margin: 25px;
+    color: #8a4071;
 }
 
 /* layout */
 
 header{
-    background-color: #67595E;
+    background-color: #eaecfe;
 }
 
 .header-inner{
@@ -87,10 +91,10 @@ label{
 }
 
 .highlight{
-    background-color: #fff0ee;
-    color: #bd301d;
+    background-color: #f0f2ff;
+    color: #5f5a93;
     font-weight: bold;
-    accent-color: #bd301d;
+    accent-color: #5f5a93;
 }
 
 input[type="radio"]{
@@ -107,16 +111,24 @@ input[type="radio"]{
 .gifs-check-label{
     width: unset;
     margin-right: 5px;
+    color: #f95680;
+    font-weight: bold;
 }
 
 .get-image-btn{
-    background-color: #67595e;
-    color: #eed6d3;
+    background-color: #f95680;
+    color: #FFFFFF;
     padding: 15px 19px;
     font-size: 24px;
     border: none;
     border-radius: 5px;
     margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.get-image-btn:hover{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: #f95680;
 }
 
 /* modal */
@@ -130,11 +142,11 @@ input[type="radio"]{
     right: 0;
     align-items: center;
     justify-content: center;
-    border: 1px solid #67595e;
+    border: 1px solid #635e95;
     border-radius: 5px;
     width: 420px;
     height: 490px;
-    background-color: #fff0ee;
+    background-color: #f3f4fe;
 }
 
 .cat-img{
@@ -157,6 +169,112 @@ input[type="radio"]{
 
 .meme-modal-close-btn:hover{
     color: white;
-    background-color: #bd301d;
-    border: 2px solid #bd301d;
+    background-color: #635e95;
+    border: 2px solid #635e95;
+}
+
+.meme-modal-add-to-favorite-button{
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    background-color: transparent;
+    border: 2px solid #555;
+    color: #555;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.meme-modal-add-to-favorite-button:hover{
+    color: white;
+    background-color: #635e95;;
+    border: 2px solid #635e95;;
+}
+
+.meme-modal-favorite-message{
+    position: absolute;
+    top: 7px;
+    left: 30%;
+    color: #ff0000;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 14px;
+    margin: 0;
+    font-weight: lighter;
+    width: 200px;
+    display: none;
+}
+
+.meme-modal-favorites {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.favorite-memes{
+    font-size: 20px;
+    color: #8a4071;
+}
+
+.clear-all-favorites-btn{
+    background-color: #f95680;
+    color: #FFFFFF;
+    padding: 15px 19px;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+}
+
+.clear-all-favorites-btn:hover{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: #f95680;
+}
+
+.get-image-btn, .clear-all-favorites-btn{
+    margin-bottom: 8px;
+}
+
+
+/* for screens smaller than 768px */
+@media (max-width: 767px) {
+
+    .header-inner {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .meme-modal {
+        width: 300px;
+        height: 350px;
+    }
+
+    .cat-img {
+        width: 250px;
+        height: 280px;
+        border-radius: 5px;
+    }
+
+    .meme-modal-close-btn,
+    .meme-modal-add-to-favorite-button {
+        font-size: 12px;
+        padding: 1px 4px;
+    }
+
+    .meme-modal-favorite-message {
+        font-size: 12px;
+        display: none;
+        width: 160px;
+        left: 35%;
+        top: 1%;
+    }
 }
