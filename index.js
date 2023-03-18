@@ -55,6 +55,17 @@ function addToFavorites(){
     }
 }
 
+function renderFavoriteList() {
+        // renders saved favorite memes
+        memeModalFavorites.innerHTML = ""
+        for (let catObject of favoriteCatsArray) {
+            const image = document.createElement('img')
+            image.src = `./images/${catObject.image}`
+            image.alt = catObject.alt
+            image.classList.add('cat-img')
+            memeModalFavorites.appendChild(image)
+        }
+}
 
 function clearFavoriteList() {
     
@@ -144,3 +155,4 @@ function renderEmotionsRadios(cats){
 }
 
 renderEmotionsRadios(catsData)
+renderFavoriteList()
