@@ -243,6 +243,15 @@ input[type="radio"]{
     margin-bottom: 8px;
 }
 
+.footer {
+    text-align: center;
+    font-size: 11px; text-align: center; margin-top: 4rem;
+}
+
+.footer a {
+    color: var(--clr-accent-400);
+}
+
 
 /* for screens smaller than 768px */
 @media (max-width: 767px) {
